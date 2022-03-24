@@ -8,8 +8,18 @@ namespace UnityStandardAssets.Characters.FirstPerson
 {
     [RequireComponent(typeof (CharacterController))]
     [RequireComponent(typeof (AudioSource))]
+
     public class FirstPersonController : MonoBehaviour
     {
+
+        //
+        //
+        //
+        public GameObject playerModel;
+        private Animator animator;
+
+
+
         [SerializeField] private bool m_IsWalking;
         [SerializeField] private float m_WalkSpeed;
         [SerializeField] private float m_RunSpeed;
@@ -45,6 +55,17 @@ namespace UnityStandardAssets.Characters.FirstPerson
         // Use this for initialization
         private void Start()
         {
+
+            //
+            //
+            //ref animator
+            animator = playerModel.GetComponent<Animator>();
+
+
+
+
+
+
             m_CharacterController = GetComponent<CharacterController>();
             m_Camera = Camera.main;
             m_OriginalCameraPosition = m_Camera.transform.localPosition;
@@ -61,7 +82,25 @@ namespace UnityStandardAssets.Characters.FirstPerson
         // Update is called once per frame
         private void Update()
         {
-            RotateView();
+
+            //
+            //
+            if (Input.GetKeyDown("w") || Input.GetKeyDown("a") || Input.GetKeyDown("s") || Input.GetKeyDown("d"))
+            {
+                //set animator boolean to true
+                animator.SetBool("isWalking", true);
+            }
+            if (Input.GetKeyUp("w") || Input.GetKeyUp("a") || Input.GetKeyUp("s") || Input.GetKeyUp("d"))
+            {
+                //set animator boolean to true
+                animator.SetBool("isWalking", false);
+            }
+
+
+
+
+
+                RotateView();
             // the jump state needs to read here to make sure it is not missed
             if (!m_Jump)
             {
