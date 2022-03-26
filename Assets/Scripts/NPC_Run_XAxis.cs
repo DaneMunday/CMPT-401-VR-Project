@@ -5,14 +5,13 @@ using UnityEngine;
 public class NPC_Run_XAxis : MonoBehaviour
 {
 
-    bool shouldMoveForward;
     int stepCount;
     int direction;
 
     // Start is called before the first frame update
     void Start()
     {
-        shouldMoveForward = true;
+
         stepCount = 0;
 
         direction = 1;
